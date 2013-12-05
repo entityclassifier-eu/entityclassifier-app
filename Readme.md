@@ -1,1 +1,1 @@
-# The REST API and Web application for the Entityclassifier.eu
+# REST API and Web application for the Entityclassifier.eu
