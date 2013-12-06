@@ -3,7 +3,7 @@ The Web application for the Entityclassifier.eu
 
 We are gradually open sourcing the code.
 
-The code is is unstable state.
+The code is still in an unstable state.
 
 Stay tuned!
 
