@@ -12,4 +12,4 @@ License
 
 Licensed under the [GNU General Public License Version 3 (GNU GPLv3)](http://www.gnu.org/licenses/gpl.html).
 
-Copyright (c) 2012-2013 Milan Dojchinovski &lt;milan@dojchinovski.mk&gt;
+Copyright (c) 2012-2013 Milan Dojchinovski <milan@dojchinovski.mk>
