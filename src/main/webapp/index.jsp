@@ -28,7 +28,7 @@ and open the template in the editor.
                     <h2 style="text-align: center; padding-bottom: 17px; margin-top: -5px;">Extraction, Disambiguation and Classification of Entities and Named Entities</h1>
                     <div>
                         <div id="textframe">
-                            <textarea id="textareacontainer" rows="15">The Charles Bridge is a famous historic bridge that crosses the Vltava river in Prague, Czech Republic.</textarea>
+                            <textarea id="textareacontainer" rows="18">The Charles Bridge is a famous historic bridge that crosses the Vltava river in Prague, Czech Republic.</textarea>
                         </div>
 
                         <div id="app-control">
@@ -52,8 +52,14 @@ and open the template in the editor.
                                     <div style="float:left; margin-left: 10px;"><input class="provenance" id="Check12" type="checkbox" value="yago" onclick="selectOnlyThisProv(this.id)" checked><span style="border-bottom:1px dashed; width: 200px;" class="tooltipclass2" title="</br><a href='http://www.mpi-inf.mpg.de/yago-naga/yago/'>YAGO2s semantic knowledge base</a> </br></br>">Yago</span></input></div>
                                 </div>
                                 <div id="mycheckboxform" style="clear:both; float:left; padding-left: 20px; padding-top: 10px; ">
+                                    <div><span class='tooltipclass2' title="</br>Filter types to selected namespaces (this option  </br> is valid only for types from LHD dataset)." style="border-bottom:1px dashed;" >THD type filter</span></div>
+                                    <div style="float:left;"><input class="thdprovenance" id="Check13" type="checkbox" value="dbo" onclick="selectOnlyThisProv2(this.id)">DBpedia Ontology</input></div>
+                                    <div style="float:left; margin-left: 10px;"><input class="thdprovenance" id="Check14" type="checkbox" value="dbinstance" onclick="selectOnlyThisProv2(this.id)">DBpedia instances</input></div>
+                                    <div style="float:left; margin-left: 10px;"><input class="thdprovenance" id="Check15" type="checkbox" value="all" onclick="selectOnlyThisProv2(this.id)" checked>All</input></div>
+                                </div>
+                                <div id="mycheckboxform" style="clear:both; float:left; padding-left: 20px; padding-top: 10px; ">
                                     <div>Knowledge base</div>
-                                    <div style="display: block;"><input class="knowledgebase" id="Check4" type="checkbox" value="linkedHypernymsDataset" onclick="selectOnlyThisKB(this.id)" checked><span style="border-bottom:1px dashed;" class='tooltipclass2' title="</br>THD types come from the <a href='http://ner.vse.cz/datasets/linkedhypernyms'>Linked Hypernyms Dataset</a></br></br>">Linked Hypernyms Dataset</span></input></div>
+                                    <div style="display: block;"><input class="knowledgebase" id="Check4" type="checkbox" value="linkedHypernymsDataset" onclick="selectOnlyThisKB(this.id)" checked><span style="border-bottom:1px dashed;" class='tooltipclass2' title="</br>THD types come from the <a href='http://ner.vse.cz/datasets/linkedhypernyms'>Linked Hypernyms Dataset</a></br></br>">Linked Hypernyms Dataset (LHD v2.0)</span></input></div>
                                     <div style="display: block;"><input class="knowledgebase" id="Check5" type="checkbox" value="local" onclick="selectOnlyThisKB(this.id)"><span class="tooltipclass2" title="</br>THD types are extracted at query time from our</br>Wikipedia mirror(the date of the snapshot in the</br>page footer)</br></br>" style="border-bottom:1px dashed;">Local Wikipedia mirror</span></input></div>
                                     <div style="display: block;"><input class="knowledgebase" id="Check6" type="checkbox" value="live" onclick="selectOnlyThisKB(this.id)"><span class="tooltipclass2" title="</br>THD types are extracted at query time from *.wikipedia.org API.</br>Suitable for retrieving types for new, topical entities. You can</br>verify the difference by inserting entity names from the</br><a href='http://en.wikipedia.org/wiki/Wikipedia:New_articles_by_topic'>list of new Wikipedia articles</a>.</br>Note: slowest, not suitable for longer input text.</br></br>" style="border-bottom:1px dashed;">Live Wikipedia</span></input></div>
                                 </div>

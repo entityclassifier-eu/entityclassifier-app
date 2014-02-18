@@ -36,6 +36,7 @@ function invokeAPI(form){
         });
         var kb = $("input.knowledgebase:checked").val();
         var entitytype = $("input.entitytype:checked").val();
+        var thdprovenance = $("input.thdprovenance:checked").val();
         var requestTimeout = $("input.requestTimeout").val();
         var lang = $("input.langchkbox:checked").val();
         var ne_switcher = $("input.ne_switcher:checked").val();
@@ -103,6 +104,7 @@ function invokeAPI(form){
             reqURI += "lang="+lang;
             reqURI += "&entity_type="+entitytype;
             reqURI += "&provenance="+provenance;
+            reqURI += "&types_filter="+thdprovenance;
             reqURI += "&knowledge_base="+kb;
             reqURI += "&priority_entity_linking="+longEntityLinking;
             xhr.open("POST", reqURI, true);
@@ -218,10 +220,29 @@ function selectOnlyThisLang(id) {
 }
 
 function selectOnlyThisKB(id) {
+    
     for (var i = 4;i <= 6; i++){
         document.getElementById("Check" + i).checked = false;
     }
     document.getElementById(id).checked = true;    
+
+    if(id == "Check4"){
+        var checked1 = $('#' + id).is(":checked");
+        var checked2 = $('#Check10').is(":checked");
+        if(checked1 && checked2) {
+            $('#Check13').removeAttr("disabled");
+            $('#Check14').removeAttr("disabled");
+            $('#Check15').removeAttr("disabled");
+        }else {
+            $('#Check13').attr("disabled", true);
+            $('#Check14').attr("disabled", true);
+            $('#Check15').attr("disabled", true);
+        }
+    }else{
+        $('#Check13').attr("disabled", true);
+        $('#Check14').attr("disabled", true);
+        $('#Check15').attr("disabled", true);
+    }
 }
 
 function selectOnlyThisNEType(id) {
@@ -232,6 +253,7 @@ function selectOnlyThisNEType(id) {
 }
 
 function selectOnlyThisProv(id) {
+    
     var exists = false;
     for (var i = 10;i <= 12; i++){
         if( id !== i){
@@ -243,6 +265,28 @@ function selectOnlyThisProv(id) {
     if(!exists){
         document.getElementById(id).checked = true;    
     }    
+
+    if(id == "Check10"){
+        var checked1 = $('#' + id).is(":checked");
+        var checked2 = $('#Check4').is(":checked");
+
+        if(checked1 && checked2){
+            $('#Check13').removeAttr("disabled");
+            $('#Check14').removeAttr("disabled");
+            $('#Check15').removeAttr("disabled");
+        }else {
+            $('#Check13').attr("disabled", true);
+            $('#Check14').attr("disabled", true);
+            $('#Check15').attr("disabled", true);
+        }
+    }
+}
+
+function selectOnlyThisProv2(id) {
+    for (var i = 13;i <= 15; i++){
+        document.getElementById("Check" + i).checked = false;
+    }
+    document.getElementById(id).checked = true;    
 }
 
 var alreadyDone = false;
@@ -401,10 +445,10 @@ var currentHoveredEntityOffset = null;
                                                         //totalResults+="<li><a href='"+lastResults[i].typeURL+"'>"+lastResults[i].type+"</a> for entity disambiguated as <a href='"+lastResults[i].entityURL+"'>" + lastResults[i].entity + "</a></li>";
                                                             var accuracy;
                                                             if(lastResults[i].origin === "thd-derived") {
-                                                                lastResults[i].accuracy !== null ? accuracy = " >= "+lastResults[i].accuracy + " " + lastResults[i].bounds: accuracy = "n/a";
+                                                                lastResults[i].accuracy !== null ? accuracy = " >= "+lastResults[i].accuracy + " +- " + lastResults[i].bounds+"%": accuracy = "n/a";
                                                                 $('#infobox div#showmore_results ol#thd_ol').append("<li><a href='"+lastResults[i].typeURL+"'>"+lastResults[i].type+"</a> for entity disambiguated as <a href='"+lastResults[i].entityURL+"'>" + lastResults[i].entity + "</a> <span style='border-bottom: 1px dashed;' title='</br>Approximated probability of the type being correct</br> on the condition that the entity is disambiguated</br>to correct URI.' class='tooltipclass onclick'> ACC</span>: "+ accuracy +"</li>")
                                                             }else{
-                                                                lastResults[i].accuracy !== null ? accuracy = lastResults[i].accuracy + " " + lastResults[i].bounds: accuracy = "n/a";
+                                                                lastResults[i].accuracy !== null ? accuracy = lastResults[i].accuracy + " +- " + lastResults[i].bounds+"%": accuracy = "n/a";
                                                                 $('#infobox div#showmore_results ol#thd_ol').append("<li><a href='"+lastResults[i].typeURL+"'>"+lastResults[i].type+"</a> for entity disambiguated as <a href='"+lastResults[i].entityURL+"'>" + lastResults[i].entity + "</a> <span style='border-bottom: 1px dashed;' title='</br>Approximated probability of the type being correct</br> on the condition that the entity is disambiguated</br>to correct URI.' class='tooltipclass onclick'> ACC</span>: "+ accuracy +"</li>")
                                                             }
 //                                                            lastResults[i].accuracy !== null ? accuracy = lastResults[i].accuracy: accuracy = "n/a";
