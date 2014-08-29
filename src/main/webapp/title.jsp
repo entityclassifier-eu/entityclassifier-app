@@ -14,6 +14,6 @@
     <div id="sub-header-part">
         <h1><a href="#">Targeted Hypernym Discovery</a>
         </h1>
-        <span style="color: #91959C; font-size: medium;">v0.3.7.1<sup>Beta</sup></span>
+        <span style="color: #91959C; font-size: medium;">v0.3.9<sup>Beta</sup></span>
     </div>
 </div>

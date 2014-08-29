@@ -71,6 +71,15 @@
             <li class="
                 <%
                 s = request.getParameter("active-link");
+                if(s.equals("releases"))
+                    out.println("active");
+                %>
+                ">
+                <a href="/thd/releases/">Releases</a>
+            </li>
+            <li class="
+                <%
+                s = request.getParameter("active-link");
                 if(s.equals("contact"))
                     out.println("active");
                 %>

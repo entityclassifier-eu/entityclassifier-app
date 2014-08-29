@@ -118,6 +118,21 @@ and open the template in the editor.
                             </tr>
                             <tr>
                                 <td>
+                                    <strong>linking_method</strong> 
+                                    <span>optional</span>
+                                    <span style='color: SteelBlue;'>NEW in THD version 3.9!</span>
+                                </td>
+                                <td>
+                                    You can choose preferred entity linking (disambiguation) method. So far, you can choose between <i>Lucene</i> based linking and <i>Wikipedia search</i> based linking. Possible values:</br>
+                                        <tt>LuceneSearch</tt> - Lucene based entity linking.</br>
+                                        <tt id="sec:wikipedia-search">WikipediaSearch</tt> - Wikipedia search based entity linking.</br>
+                                        <b>Default value: </b><tt>LuceneSearch</tt> - if you do not specify this query parameter, than Lucene search is used as a linking method.</br>
+                                        <i>Example: </i><tt>linking_method=WikipediaSearch</tt></br>
+                                        <b><span style="color: darkred; display: inline;">Important note:</span></b> you can not at the same time use LuceneSearch and perform live types mining (<tt>knowledge_base=live</tt>).                                        
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <strong>apikey</strong>
                                     <span>required</span>
                                 </td>
@@ -206,10 +221,18 @@ and open the template in the editor.
         "typeURI": "http://dbpedia.org/ontology/Country",
         "entityLabel": "Czech Republic",
         "entityURI": "http://dbpedia.org/resource/Czech_Republic",
-        "confidence":  {
-          "value": "0.85",
-          "bounds": "+- 2.5%",
-          "type": "extraction"
+        "classificationConfidence":  {
+          "value": 0.857,
+          "type": "classification"
+        },
+        "linkingConfidence":  {
+          "value": 0.999,
+          "type": "linking"
+        },
+        "salience":{
+            "classLabel":"most_salient",
+            "score":0.845,
+            "confidence":0.715
         },
         "provenance": "thd"
       } ]</pre></code></div>
@@ -221,7 +244,13 @@ and open the template in the editor.
         &lt;typeURI&gt;http://dbpedia.org/ontology/Country&lt;/typeURI&gt;
         &lt;entityLabel&gt;Czech Republic&lt;/entityLabel&gt;
         &lt;entityURI&gt;http://dbpedia.org/resource/Czech_Republic&lt;/entityURI&gt;
-        &lt;confidence type="extraction" bounds="+- 2.5%"&gt;0.85&lt;/confidence&gt;
+        &lt;confidence type="classification"&gt;0.857&lt;/confidence&gt;
+        &lt;confidence type="linking"&gt;0.999&lt;/confidence&gt;
+        &lt;salience&gt;
+            &lt;score&gt;0.845&lt;/score&gt;
+            &lt;confidence&gt;0.715&lt;/confidence&gt;
+            &lt;class&gt;most_salient&lt;/class&gt;
+        &lt;/salience&gt;
         &lt;provenance&gt;thd&lt;/provenance&gt;
     &lt;/type&gt;
 &lt;types&gt;</pre></code></div>
@@ -229,9 +258,57 @@ and open the template in the editor.
 <b>typeURI</b> - DBpedia/YAGO URI describing the entity type.</p>
 <b>entityLabel</b> - name by which the disambiguated entity is formally known.</p>
 <b>entityURI</b> - DBpedia/YAGO URI describing the disambiguated entity.</p>
-<b>confidence</b> - estimated classification or disambiguation confidence. </br>Possible values for the type attribute are <tt>classification</tt> and <tt>disambiguation</tt>.</br><i>Classification confidence</i> is the estimated probability that the typeLabel is correct for given typeURI.</br><i>Disambiguation confidence</i> is the estimated probability of the <tt>entityURI</tt> being correct given the surface form of the entity (not currently supported).</p>
-                                <b>provenance</b> - Provenance of the results. Possible values are: <tt><b>thd</b></tt> - produced by THD, <tt><b>thd-derived</b></tt> - also produced by THD through searching for superclasses in the Dbpedia ontology, <tt><b>dbpedia</b></tt> - produced by DBpedia, and <tt><b>yago</b></tt> - produced by YAGO2s ontology. </p>
-                                </td>
+<b>provenance</b> - Provenance of the results. Possible values are: <tt><b>thd</b></tt> - produced by THD, <tt><b>thd-derived</b></tt> - also produced by THD through searching for superclasses in the Dbpedia ontology, <tt><b>dbpedia</b></tt> - produced by DBpedia, and <tt><b>yago</b></tt> - produced by YAGO2s ontology. </p>
+<b>confidence</b>  - estimated classification or linking (disambiguation) confidence.</br><i>Classification confidence</i> is the estimated probability that the <tt>typeLabel</tt> is correct for given <tt>entityURI</tt>.</br><i>Linking confidence</i> is the estimated probability of the <tt>entityURI</tt> being correct given the surface form of the entity.
+</br>Confidence in XML: element &ltconfidence&gt; - Classification and linking confidence can be distinguished with the <tt>type</tt> attribute. Possible values for the <tt>type</tt> attribute are <tt>linking</tt> and <tt>classification</tt>. 
+<div style="background-color: #f8f8ff; margin-bottom: 5px; border: lightgray solid 1px; padding: 4px;">
+<code><pre>
+&lt;confidence type="classification"&gt;0.857&lt;/confidence&gt;
+&lt;confidence type="linking"&gt;0.999&lt;/confidence&gt;</pre></code>
+</div>
+Confidence in JSON: Classification confidence in <tt>classificationConfidence</tt> object, linking confidence in the <tt>linkingConfidence</tt> object. The actual confidence value is stored at the key <tt>value</tt>.
+<div style="background-color: #f8f8ff; margin-bottom: 5px; border: lightgray solid 1px; padding: 4px;">
+<code><pre>"classificationConfidence":  {
+    "value": 0.857,
+    "type": "classification"
+},
+"linkingConfidence":  {
+    "value": 0.999,
+    "type": "linking" 
+}</pre></code>
+</div>
+Note: if you use <tt>WikipediaSearch</tt> as entity linking method (read more <a href="#sec:wikipedia-search">here</a>), the linking confidence will always be -1. We are unable to estimate the linking confidence for the Wikipedia search based linking.
+</p>
+<b>salience</b>  - estimated salience of the entity to the document. The level of salience determines whether or not the document is about the entity.
+In XML the entity salience is encoded as follows:
+<div style="background-color: #f8f8ff; margin-bottom: 5px; border: lightgray solid 1px; padding: 4px;">
+<code><pre>
+&lt;salience&gt;
+    &lt;class&gt;most_salient&lt;/class&gt;
+    &lt;score&gt;0.845&lt;/score&gt;
+    &lt;confidence&gt;0.715&lt;/confidence&gt;
+&lt;/salience&gt;
+</pre></code>
+</div>
+<tt><b>class</b></tt> - one of the following three classes indicating level of salience:
+<ul>
+    <li><b>most_salient</b> - A most prominent entity with highest focus of attention in the document.</li>
+    <li><b>less_salient</b> - A less prominent entity with focus of attention in some parts of the document.</li>
+    <li><b>not_salient</b> - The document is not about the entity.</li>
+</ul>
+<tt><b>score</b></tt> - the entity salience score. High salience score indicates higher focus of attention.
+<tt><b>confidence</b></tt> - estimated confidence (probability) that the entity salience class is correct.</br>
+In JSON the entity salience is encoded as follows:
+<div style="background-color: #f8f8ff; margin-bottom: 5px; border: lightgray solid 1px; padding: 4px;">
+<code><pre>"salience":{
+    "classLabel":"most_salient",
+    "score": 0.845,
+    "confidence": 0.715
+}</pre></code>
+</div>
+</p>
+
+</td>
                             </tr>
                         </tbody>
                     </table>                    
@@ -381,6 +458,17 @@ and open the template in the editor.
                             </tr>
                             <tr>
                                 <td>
+                                    <strong>44</strong>
+                                </td>
+                                <td>
+                                    Not valid <tt>linking_method</tt> parameter
+                                </td>
+                                <td>
+                                    The value of the linking_method parameter is not valid. You can choose between <tt>LuceneSearch</tt> or <tt>WikipediaSearch</tt>.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <strong>45</strong>
                                 </td>
                                 <td>
@@ -468,7 +556,13 @@ Vltava river in Prague, Czech Republic."</code>
             &lt;typeURI&gt;http://dbpedia.org/ontology/Bridge&lt;/typeURI&gt;
             &lt;entityLabel&gt;Charles Bridge&lt;/entityURI&gt;
             &lt;entityURI&gt;http://dbpedia.org/resource/Charles_Bridge&lt;/entityURI&gt;
-            &lt;confidence type="extraction" bounds="+- 2.5%"&gt;0.85&lt;/confidence&gt;
+            &lt;confidence type="classification" &gt;0.857&lt;/confidence&gt;
+            &lt;confidence type="linking" &gt;0.65&lt;/confidence&gt;
+            &lt;salience&gt;
+                &lt;score&gt;0.845&lt;/score&gt;
+                &lt;confidence&gt;0.715&lt;/confidence&gt;
+                &lt;class>most_salient&lt;/class&gt;
+                &lt;/salience&gt;
             &lt;provenance&gt;thd&lt;/provenance&gt;
           &lt;/type&gt;
           &lt;type&gt;
@@ -476,8 +570,14 @@ Vltava river in Prague, Czech Republic."</code>
             &lt;typeURI&gt;http://dbpedia.org/ontology/RouteOfTransportation&lt;/typeURI&gt;
             &lt;entityLabel&gt;Charles Bridge&lt;/entityURI&gt;
             &lt;entityURI&gt;http://dbpedia.org/resource/Charles_Bridge&lt;/entityURI&gt;
-            &lt;confidence type="extraction" bounds="+- 2.5%"&gt;0.85&lt;/confidence&gt;
-            &lt;provenance&gt;thd&lt;/provenance&gt;
+            &lt;confidence type="classification" &gt;0.857&lt;/confidence&gt;
+            &lt;confidence type="linking" &gt;0.65&lt;/confidence&gt;
+            &lt;salience&gt;
+                &lt;score&gt;0.845&lt;/score&gt;
+                &lt;confidence&gt;0.715&lt;/confidence&gt;
+                &lt;class>most_salient&lt;/class&gt;
+                &lt;/salience&gt;
+            &lt;provenance&gt;thd-derived&lt;/provenance&gt;
           &lt;/type&gt;
           ...
     &lt;/entity&gt;

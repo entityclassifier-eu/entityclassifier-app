@@ -31,7 +31,7 @@ public class UrlFilter implements javax.servlet.Filter {
         } else if (path.startsWith("/api/")){
             chain.doFilter(request,response); 
         } else {
-            System.out.println("From filter: "+ "/pages"+path);
+//            System.out.println("From filter: "+ "/pages"+path);
             request.getRequestDispatcher("/pages" + path).forward(request, response);
         }
     }

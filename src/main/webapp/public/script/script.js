@@ -10,7 +10,12 @@ var ongoingDyscovery = false;
 var lastResults = null;
 
 function invokeAPI(form){
+
+
+    // preparing request URI
     
+    
+
     if(!ongoingDyscovery){
         
         var query = $('textarea#textareacontainer').val();
@@ -89,7 +94,9 @@ function invokeAPI(form){
                         //resultsPlaceHolder.children().remove();      
                         // decode encoded query
                         // query = unescape(query);
-                        query = decodeURIComponent(query); // THIS SHOULD BE ON
+//                        console.log(query);
+                        
+//                        query = decodeURIComponent(query); // THIS SHOULD BE ON
                         resultsPlaceHolder.html(getFormatedResults(query, response));
                         // reload the tooltip plugin
                         $(".tooltipclass").tipTip({delay: 50, fadeIn: 150, fadeOut: 200});
@@ -110,6 +117,7 @@ function invokeAPI(form){
             xhr.open("POST", reqURI, true);
             xhr.setRequestHeader("Accept", "application/json");
             xhr.setRequestHeader("Content-Type", "text/plain");
+
             xhr.send(query);
             $("#loading-gif").fadeIn(function(){
                 
@@ -137,11 +145,18 @@ String.prototype.splice = function( idx, rem, s ) {
 function getFormatedResults(query, results){
     
     var ann = new Array();
-
+    results.sort(function(a,b) {
+        if (a.startOffset < b.startOffset)
+            return -1;
+        if (a.startOffset > b.startOffset)
+            return 1;
+        else
+            return 0;
+    });
     var counter = 0;
     for(i in results){
-        if(typeof ann[results[i].startOffset] === 'undefined'){
-            counter = 0;
+        if(typeof ann[results[i].startOffset] === 'undefined') {
+            counter=0;
             counter++;
             //console.log("first time");
             //console.log(results[i].startOffset);
@@ -149,18 +164,18 @@ function getFormatedResults(query, results){
             if(results[i].type === "" && results[i].entityURL !== ""){
 //                console.log("1st");
 //                content = "Hypernyms:<br/>#" + counter + ': N/A for entity disambiguated as <a href="' + results[i].entityURL + '" target="_blank">' + results[i].entity + ' </a>';                
-                content = "Hypernyms:<br/>#" + counter + ': N/A for entity disambiguated as <a href="' + results[i].entityURL + '" target="_blank">' + results[i].entity + ' </a>';                
+                content = "Hypernyms:<br/>#" + counter + ': N/A for entity disambiguated as <a href="' + results[i].entityURL.replace(/'/g, '&#39;') + '" target="_blank">' + results[i].entity.replace(/'/g, '') + ' </a>';                
             } else if(results[i].type === "" && results[i].entityURL === ""){
 //                console.log("2nd");
                 content = "Hypernyms:<br/>#" + counter + ': Sorry, we failed to resolve this entity to a DBpedia URI.';                
             } else {
 //                console.log("3rd");
-                content = "Hypernyms:<br/>#" + counter + ': <a href="'+results[i].typeURL+'" target="_blank">' + results[i].type + '</a> for entity disambiguated as <a href="' + results[i].entityURL + '" target="_blank">' + results[i].entity + ' </a>';                
+                content = "Hypernyms:<br/>#" + counter + ': <a href="'+results[i].typeURL.replace(/'/g, '&#39;')+'" target="_blank">' + results[i].type.replace(/'/g, '') + '</a> for entity disambiguated as <a href="' + results[i].entityURL.replace(/'/g, '&#39;') + '" target="_blank">' + results[i].entity.replace(/'/g, '') + ' </a>';
             }
             ann[results[i].startOffset] = { start: results[i].startOffset, end: results[i].endOffset, content: content}
         }else{
             counter++;
-            var content = ann[results[i].startOffset].content + "<br/>#"+counter+': <a href="'+results[i].typeURL.replace(/'/g, '&#39;') + '" target="_blank">' +results[i].type.replace(/'/g, '&#39;') + '</a> for entity disambiguated as <a href="' + results[i].entityURL + '" target="_blank">' + results[i].entity + ' </a>';
+            var content = ann[results[i].startOffset].content + "<br/>#"+counter+': <a href="'+results[i].typeURL.replace(/'/g, '&#39;') + '" target="_blank">' +results[i].type.replace(/'/g, '') + '</a> for entity disambiguated as <a href="' + results[i].entityURL.replace(/'/g, '&#39;') + '" target="_blank">' + results[i].entity.replace(/'/g, '') + ' </a>';
             ann[results[i].startOffset].content = content;
         }
     }
@@ -202,7 +217,7 @@ function selectOnlyThisLang(id) {
     for (var i = 1;i <= 3; i++){
         document.getElementById("Check" + i).checked = false;
     }
-    switch(id) {
+switch(id) {
     case "Check1":
        $("textarea#textareacontainer").text("The Charles Bridge is a famous historic bridge that crosses the Vltava river in Prague, Czech Republic.");
       break;

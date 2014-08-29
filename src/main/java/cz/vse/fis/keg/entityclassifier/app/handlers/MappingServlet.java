@@ -25,11 +25,11 @@ public class MappingServlet extends javax.servlet.http.HttpServlet {
         
         try {
             String reqResource = request.getRequestURI().substring(10);
-            System.out.println("req: " + reqResource);
+//            System.out.println("req: " + reqResource);
             if(reqResource.equals("/")){
                 request.getRequestDispatcher("../index.jsp").forward(request, response);
             }else{
-                System.out.println("here");
+//                System.out.println("here");
                 String[] urlSplit = reqResource.split("/");
                 request.getRequestDispatcher(reqResource + urlSplit[urlSplit.length-1] + ".jsp").forward(request, response);
             }
