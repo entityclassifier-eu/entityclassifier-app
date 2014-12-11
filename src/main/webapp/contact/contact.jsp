@@ -54,11 +54,12 @@ and open the template in the editor.
                     <div class="contact-left">
                         <h1>Acknowledgments</h1>
                         <p>
-                            The development of this software is supported by <a href="http://www.linkedtv.eu" style="color: steelblue;">LinkedTV</a> project.
+                            The development of this software is supported by the <a href="http://www.linkedtv.eu" style="color: steelblue;">LinkedTV</a> and <a href="http://www.linkedtv.eu" style="color: steelblue;">LOD2</a> project.
                         </p>
                     </div>
-                    <div class="contact-right">
-                    <p><a href="http://www.linkedtv.eu"><img src="/thd/public/img/linkedTV-logo.jpg" alt=""></a></p>
+                    <div class="contact-right" style="padding-top: 40px;">
+                        <a href="http://www.linkedtv.eu"><img src="/thd/public/img/linkedTV-logo.jpg" alt="" style="height:100px; float:left;"></a>
+                    <a href="http://lod2.eu/"><img src="/thd/public/img/lod2-logo.png" alt="" style="height:100px; margin-left: 30px;"></a>
                     </div>
                 </div>
             </div>

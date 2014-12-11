@@ -5,14 +5,14 @@ and open the template in the editor.
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <jsp:include page="../../../head-tag.jsp">
+    <jsp:include page="../../../../head-tag.jsp">
             <jsp:param name="title" value="REST API v1 Resources" />
             <jsp:param name="description" value="Unsupervised Targeted Hypernym Discovery tool" />
             <jsp:param name="keywords" value="algorithm, hypernym discovery, program, tool, api, web api" />
     </jsp:include>
     <body>
-        <jsp:include page="../../../title.jsp" />
-        <jsp:include page="../../../navigation-basic.jsp" >
+        <jsp:include page="../../../../title.jsp" />
+        <jsp:include page="../../../../navigation-basic.jsp" >
             <jsp:param name="active-link" value="api" />
         </jsp:include>
         <div id="main">
@@ -464,6 +464,6 @@ Vltava river in Prague, Czech Republic."</code>
                 </div>
             </div>
         </div>
-        <jsp:include page="../../../footer.jsp" />
+        <jsp:include page="../../../../footer.jsp" />
     </body>
 </html>

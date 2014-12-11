@@ -25,14 +25,22 @@ and open the template in the editor.
                         <br/>
                         Even more, you can use our <a href='/thd/support-downloads/' target="_blank">GATE plugin</a> to process documents in the GATE text engineering framework.
                     </p>
-                    <h3><a href='/thd/docs/api/v2/' target='_blank'>REST API version 2</a></h3>
+                    <h3>REST API version 2.0</a></h3>
                     <p>The most recent version of the REST API.</p>
-                    <h3><a href='/thd/docs/api/v1/' target='_blank'>REST API version 1</a></h3>
-                    <p>Version 1 of the REST API is still available. However, we recommend migration to version 2.</p>
+                    <ul>
+                        <li><a href='/thd/docs/api/v2/extraction/' target='_blank'>Entity Extraction API v2.0</a></li>
+                        <!--<li><a href='/thd/docs/api/v2/classification/' target='_blank'>Entity Classification API v2.0</a></li>-->
+                    </ul>
+                    <h3>REST API version 1.0</h3>
+                    <p>Version 1.0 of the REST API is still available. However, we recommend migration to version 2.0.</p>
+                    <ul>
+                        <li><a href='/thd/docs/api/v1/extraction/' target='_blank'>Entity Extraction API v1.0</a></li>
+                    </ul>
                     <div style="clear: both; margin-top: 60px;">
                         <h3>Get your API key!</h3>
                         <p>API key is required to use the <a href="/thd/docs/">REST API</a> or the <a href="/thd/support-downloads/">GATE plugin</a>. Write to <a href='mailto:milan.dojchinovski@fit.cvut.cz?subject=API key request'>Milan Dojchinovski</a> to request own API key.</p>
-                    </div>                </div>
+                    </div>                
+                </div>
             </div>
         </div>
         <jsp:include page="../footer.jsp" />

@@ -514,7 +514,7 @@ a {
     margin-bottom: 20px;
     float:left;
     border: 1px solid #ddd;
-    height: 440px;
+    height: 550px;
     width: 380px;
     border-radius: 7px;
     box-shadow: inset 0px 0px 7px 0px rgba(0,0,0,.1);
@@ -841,16 +841,90 @@ div.textResults{
     /*position: absolute;*/
 }
 
+
+.results-nice-table {
+    
+    min-width: 800px;
+    margin: 20px;
+    border: 3px solid #6C7A95;
+    border-spacing: 0px 0px;
+    border-radius: 8px 8px;
+}
+
+.results-nice-table tbody tr:nth-child(even) {
+    background: #F2F2F2;
+}
+.results-nice-table thead {
+    background-color:  #6C7A95;
+    font-weight: bold;
+    border: 0px;
+    color: white;
+}
+
+.results-nice-table tbody tr td {
+    line-height: 170%;
+}
+
+.results-nice-table caption {
+    caption-side: top;
+    text-align: center;
+    padding-bottom: 5px;
+    color: #444444;
+    font-weight: bold;
+}
+
+/*id of type*/
+.results-nice-table thead tr {
+    height: 30px;    /*padding: 1px;*/
+}
+
+.results-nice-table tr td:first-child {
+    width: 30px;
+    text-align:center;
+}
+
+
+.results-nice-table tr td:nth-child(2) {
+    max-width: 90px;
+}
+
+.results-nice-table tr td:nth-child(3) {
+    max-width: 150px;
+}
+
+/*linking confidence*/
+.results-nice-table tr td:nth-child(4) {
+    max-width: 50px;
+}
+/*classification confidence*/
+.results-nice-table tr td:nth-child(5) {
+    max-width: 60px;
+}
+/*salience confidence*/
+.results-nice-table tr td:nth-child(6) {
+    max-width: 50px;
+}
+/*salience score*/
+.results-nice-table tr td:nth-child(7) {
+    max-width: 40px;
+}
+/*salience class*/
+.results-nice-table tr td:nth-child(8) {
+    max-width: 60px;
+}
+
 #infobox{
     visibility: hidden;
     position: fixed;
     border: 1px solid;
     top: 200px;
-    left: 200px;
-    min-width: 400px;
+    left: 100px;
+    min-width: 600px;
     min-height: 250px;
     z-index:99999;
-    background-color: #FFFFFF !important;   
+    background-color: #FFFFFF !important;
+    overflow-y:auto;
+    height: 450px;
 }
 
 #tiptip_close:hover{
@@ -951,7 +1025,7 @@ div.textResults{
 
 #showmore_results ol li a {
     text-decoration: none;
-    color: steelblue;    
+    color: steelblue;
 }
 
 .field-title {
@@ -1074,16 +1148,16 @@ div.textResults{
     color: gray;
 }
 
+.errors-table tbody tr td {
+    padding: 8px 0 8px 0;
+    vertical-align: top;
+}
+
 th, thead th {
     padding: 8px 0;
     border-bottom: 1px solid #EEE;
     font-weight: bold;
     text-align: left;
-}
-
-td {
-    padding: 8px 0 8px 0;
-    vertical-align: top;
 }
 
 td.api{    
@@ -1178,4 +1252,15 @@ td.firstRow{
     height: 12px;
     padding-right: 3px;
     margin-bottom: 4px;
+}
+
+.mostsalient {
+    background-color: rgba(51, 153, 255 , 1.0);
+}
+
+.lesssalient {
+    background-color: rgba(51, 153, 255 , 0.5);
+}
+.not-salient {
+    background-color: rgba(51, 153, 255 , 0);
 }
