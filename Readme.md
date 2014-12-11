@@ -7,6 +7,15 @@ The code is still in an unstable state.
 
 Stay tuned!
 
+### Start the application in embedded Glassfish Web server.
+```sh
+$ mvn clean
+$ mvn package
+$ mvn embedded-glassfish:run
+```
+If you run your own Glassfish server follow the instructions below.
+
+
 License
 ------
 
