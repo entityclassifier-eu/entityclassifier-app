@@ -21,8 +21,8 @@
 "><img class="bibtex-icon" src="/thd/public/img/bibtex-icon.png">cite</a> our work!</li>
                         <li>The interface has been tested with Safari 6.0.4, Chrome 25.0 and Firefox 18.0.2.</li>
                         <li>THD can currently process texts written in English, German and Dutch language.</li>
-                        <li>THD produces results processed from Wikipedia snapshots made on Dec 1st 2012 (DE), Oct 11th 2012 (NL), Sep 18th 2012 (EN).</li>
-                        <li>THD is using the <a href="http://ner.vse.cz/datasets/linkedhypernyms/dataset-description/">Linked Hypernyms Dataset</a> which is available for download from <a href="http://ner.vse.cz/datasets/linkedhypernyms/dataset-description/">here</a>.</li>
+                        <!--<li>THD produces results processed from Wikipedia snapshots made on Dec 1st 2012 (DE), Oct 11th 2012 (NL), Sep 18th 2012 (EN).</li>-->
+                        <li>THD is using the <a href="http://ner.vse.cz/datasets/linkedhypernyms/dataset-description/">Linked Hypernyms Dataset v1.3.9 and v.2.3.9</a> which is available for download from <a href="http://ner.vse.cz/datasets/linkedhypernyms/dataset-description/">here</a>.</li>
                     </ul>
                 </div>
             </div>

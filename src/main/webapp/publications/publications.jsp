@@ -5,7 +5,7 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html>
     <jsp:include page="../head-tag.jsp">
-            <jsp:param name="title" value="Contact" />
+            <jsp:param name="title" value="THD Publications" />
             <jsp:param name="description" value="Unsupervised Targeted Hypernym Discovery tool" />
             <jsp:param name="keywords" value="algorithm, hypernym discovery, program, tool, api, web api" />
     </jsp:include>

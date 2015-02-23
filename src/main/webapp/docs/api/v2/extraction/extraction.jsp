@@ -6,7 +6,7 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html>
     <jsp:include page="../../../../head-tag.jsp">
-            <jsp:param name="title" value="REST API v2 Resources" />
+            <jsp:param name="title" value="Entity Extraction API v2" />
             <jsp:param name="description" value="Unsupervised Targeted Hypernym Discovery tool" />
             <jsp:param name="keywords" value="algorithm, hypernym discovery, program, tool, api, web api" />
     </jsp:include>
@@ -51,8 +51,14 @@ and open the template in the editor.
                                     <span>optional</span>
                                 </td>
                                 <td>
-                                    Requested response format. Values: <tt>xml/json</tt>. </br><b>Default value:</b> <tt>xml</tt></br><i>Example: </i><tt>format=xml</tt></br>Note: The format can be also specified using the <tt>Accept</tt> request header. If <tt>format</tt> parameter is specified, then the format parameter will have higher priority.</br><i>Example: </i><tt>Accept: application/xml.</tt>
-                                    <p style='color: firebrick;'>NIF 1.0 support has been suspended, NIF 2.0 will be released once the specification is completed.</p>
+                                    Requested response format. Possible values: <tt>xml/json/rdfxml</tt>. </br><b>Default value:</b> <tt>xml</tt></br><i>Example: </i><tt>format=xml</tt></br>The format can be also specified using the <tt>Accept</tt> request header. If <tt>format</tt> parameter is specified, then the format parameter will have higher priority.</br>
+                                    Values for the Accept header:</br>
+                                    <tt>application/xml</tt></br>
+                                    <tt>application/json</tt></br>
+                                    <tt>application/rdf+xml</tt></br>
+                                    <tt>application/ld+json</tt></br>
+                                    <tt>application/x-turtle</tt></br>
+                                    <b><span style="color: darkred; display: inline;">Important note:</span></b> The results serialized in RDF are modelled using the <b>NIF 2.0</b> format.</br>Please refer to the <b><a href="http://persistence.uni-leipzig.org/nlp2rdf/">NIF 2.0</a></b> specification for more information.
                                 </td>
                             <tr>
                                 <td>
@@ -105,7 +111,7 @@ and open the template in the editor.
                                 <td>
                                     <strong>types_filter</strong> 
                                     <span>optional</span>
-                                    <span style='color: SteelBlue;'>NEW in version 2!</span>
+                                    <span style='color: SteelBlue;'>NEW in the API version 2!</span>
                                 </td>
                                 <td>
                                     Filter types to selected namespaces for <tt>thd</tt> results. You can filter out only types as DBpedia instances, DBpedia Ontology types, or both of them. This setting has no effect for <tt>provenance=yago</tt> or <tt>provenance=dbpedia</tt>. Values:
@@ -123,12 +129,31 @@ and open the template in the editor.
                                     <span style='color: SteelBlue;'>NEW in THD version 3.9!</span>
                                 </td>
                                 <td>
-                                    You can choose preferred entity linking (disambiguation) method. So far, you can choose between <i>Lucene</i> based linking and <i>Wikipedia search</i> based linking. Possible values:</br>
+                                    You can choose preferred entity linking (disambiguation) method. So far, you can choose between 6 entity linking approaches. Possible values:</br>
+                                        <tt>SFISearch</tt> - This approach uses a custom entity Surfaces Form Index (SFI). The candidate index contains all surfaces forms found in Wikpedia articles together with their candidates.</br>
                                         <tt>LuceneSearch</tt> - Lucene based entity linking.</br>
+                                        <tt>LuceneSearchSkipDisPage</tt> - This approach differs from the one above in the sense that it skips the disambiguation DBpedia pages and as a correct link considers the first non-disambiguation page.</br>
                                         <tt id="sec:wikipedia-search">WikipediaSearch</tt> - Wikipedia search based entity linking.</br>
-                                        <b>Default value: </b><tt>LuceneSearch</tt> - if you do not specify this query parameter, than Lucene search is used as a linking method.</br>
+                                        <tt>AllVoting</tt> - This approach performs the entity linking by aggregating the results from the SFI, Lucene (enhanced) and Wikipedia Search based entity linking.</br>
+                                        <tt>SurfaceFormSimilarity</tt> - This approach first performs entity linking with the SFI, Lucene (enhanced) and Wikipedia Search. The article with the most similar title to the entity surface form is considered as correct.</br>
+                                        <b>Default value: </b><tt>LuceneSearchSkipDisPage</tt> - if you do not specify this query parameter, than Lucene search (which skips disambiguation pages) is used as a linking method.</br>
                                         <i>Example: </i><tt>linking_method=WikipediaSearch</tt></br>
                                         <b><span style="color: darkred; display: inline;">Important note:</span></b> you can not at the same time use LuceneSearch and perform live types mining (<tt>knowledge_base=live</tt>).                                        
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>spotting_method</strong> 
+                                    <span>optional</span>
+                                    <span style='color: SteelBlue;'>NEW in THD version 3.9.2!</span>
+                                </td>
+                                <td>
+                                    You can choose preferred entity spotting (recognition) method. So far, you can choose between spotting based on <i>lexico-syntactic grammars</i> and spotting based on <i>Conditional Random Fields</i> model. Possible values:</br>
+                                        <tt>grammars</tt> - entity spotting based on manually crafted lexico-syntactic grammars.</br>
+                                        <tt>CRF</tt> - entity spotting based on the state-of-the-art Conditional Random Fields model.</br>
+                                        <b>Default value: </b><tt>grammars</tt> - if you do not specify this query parameter, than grammars based method is used for spotting entities.</br>
+                                        <i>Example: </i><tt>spotting_method=grammars</tt></br>
+                                        <b><span style="color: darkred; display: inline;">Important note:</span></b> CRF based entity spotting is slowlier but more efficient. It can be used to detect named entities only.
                                 </td>
                             </tr>
                             <tr>
@@ -312,7 +337,7 @@ In JSON the entity salience is encoded as follows:
                             </tr>
                         </tbody>
                     </table>                    
-                    
+                                        
                     <h2>HTTP Status Codes</h2>
                     <p>The THD API attempts to return appropriate HTTP status codes for every request.</p>
                     <table class="errors-table">

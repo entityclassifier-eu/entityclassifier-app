@@ -5,7 +5,7 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html>
     <jsp:include page="../head-tag.jsp">
-            <jsp:param name="title" value="THD Gate Plugin" />
+            <jsp:param name="title" value="THD Support" />
             <jsp:param name="description" value="Unsupervised Targeted Hypernym Discovery tool" />
             <jsp:param name="keywords" value="algorithm, hypernym discovery, program, tool, api, web api" />
     </jsp:include>
@@ -19,36 +19,48 @@ and open the template in the editor.
                 <div class="sub-main2" style="margin-top: -20px;">
                     <h1>Support and Downloads</h1>
                     <div>
-                        <h2>Gate Plugin</h2>
+                        <hr>
+                        <h2>Gate Plugins</h2>
+                        <p>We have developed two plugins for the GATE framework. A <b>Light plugin</b> for our REST API and a <b>Stand Alone plugin</b> version which is not dependent on any external resources.</p>
+                        <div class="alert alert-info"><strong>Heads up!</strong> If you use our plugins for scientific publication, please
+                            <a href="http://www.dojchinovski.mk/public/data/ECMLPKDD2013-DojchinovskiK.bib">cite <img class="bibtex-icon" src="/thd/public/img/bibtex-icon.png"></a> our work:</br>
+                            M. Dojchinovski and T. Kliegr. Entityclassifier.eu: Real-time classification of entities in text with Wikipedia. In H. Blockeel, K. Kersting, S. Nijssen, and F. Zelezny, (eds.) Machine Learning and Knowledge Discovery in Databases, vol. 8190 of Lecture Notes in Computer Science, pp. 654-658. Springer Berlin Heidelberg, 2013.
+                        </div>
+                        <h3>Entityclassifier.eu NER Light plugin</h3>
                         <p>
-                            In addition to the web interface and the web service, the GATE plugin
-                            provides the third way to interface with THD. The plugin is provided
-                            as <b>processing resource (PR)</b> for the <a href="http://gate.ac.uk">GATE platform</a>.
+                            This is a GATE plugin for the Entityclassifier.eu NER REST API. You can use it perform Named Entity Recognition over English, German and Dutch written texts. It is a light version of the GATE plugin.
+                            If you don't want to depend on the REST API you can use the stand-alone plugin version (see bellow).
+                            The plugin is provided as <b>processing resource (PR)</b> for the <a href="http://gate.ac.uk">GATE platform</a>.</br>
+                            To use this plugin you need your own API key. To request own API key, feel in the form at: <a href="/thd/docs/#apikeyform">http://entityclassifier.eu/thd/docs/#apikeyform</a></br>
                         </p>
+                        <b>How to use is</b>                        
+                            <ul>
+                                <li>The plugin is available through our <b>GATE plugin repository</b> <a href="http://ner.vse.cz/GATE/gate-update-site.xml">http://ner.vse.cz/GATE/gate-update-site.xml</a>. Add it in your GATE application.</li>
+                                <li>The <b>source code</b> and detailed <b>instructions</b> on how to use it are available at: <a href="https://github.com/KIZI/entityclassifier-gate-light-plugin">https://github.com/KIZI/entityclassifier-gate-light-plugin</a></li>
+                            </ul>
+                        </p>
+                        <h3>Entityclassifier.eu NER Stand Alone plugin</h3>
                         <p>
-                            The GATE THDClientPR  submits a GATE document to the THD web service,
-                            and adds the annotations from the THD response as GATE annotations in
-                            the GATE document for use by other PRs. The entities appearing in the
-                            document are thus  provided with DBpedia Ontology concepts and
-                            resources. These annotation can be easily mapped to Wikipedia pages if
-                            needed.
+                            This is a GATE stand-alone plugin for the Entityclassifier.eu NER system.
+                            You can use it perform Named Entity Recognition over English, German and Dutch written texts.
+                            All resources you need for entity spotting, disambiguation and classification are provided with the plugin.
+                            If you want, you can use the light plugin version, which is communicating with our REST API endpoint.
                         </p>
-                        <p>
-                            To load this PR, you need to put it to the GATE/plugins directory. In
-                            order to use the THDClientPR , you will need to obtain a <a href="/thd/contact/">THD API key</a>. Provide your api key as an
-                            configuration parameter when you use the THDClientPR in GATE. Additionally, various runtime parameters are available from the OpenCalais API, and
-                            are named the same as in that <a href="/thd/docs/">API documentation</a>.
+                        <b>How to use is</b>                        
+                            <ul>
+                                <li>The plugin is available through our <b>GATE plugin repository</b> <a href="http://ner.vse.cz/GATE/gate-update-site.xml">http://ner.vse.cz/GATE/gate-update-site.xml</a>. Add it in your GATE application.</li>
+                                <li>The <b>source code</b> and detailed <b>instructions</b> on how to use it are available at: <a href="https://github.com/KIZI/entityclassifier-gate-stand-alone-plugin">https://github.com/KIZI/entityclassifier-gate-stand-alone-plugin</a></li>
+                            </ul>
                         </p>
-                        <ul>
-                            <li>THDClientPR source code (<a href="http://ner.vse.cz/datasets/evaluation/tools/THDClientPR-src.zip">download</a>)</li>
-                            <li>THDClientPR binary (<a href="http://ner.vse.cz/datasets/evaluation/tools/THDClientPR-bin.zip">download</a>)</li>
-                        </ul>
+                        <hr>
                         <h2>Evaluation framework</h2>
                         <p>
                             This plugin is supplemented by a GATE-based <a href="http://ner.vse.cz/datasets/evaluation/">NER Evaluation framework</a>, a collection
                             of datasets and GATE plugins for benchmarking of THD against other
                             wikifiers.
                         </p>
+                        </br>
+                        </br>                        
                     </div>
                 </div>
             </div>

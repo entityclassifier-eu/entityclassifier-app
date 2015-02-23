@@ -47,7 +47,7 @@ and open the template in the editor.
                     </div>
                     <div style="clear: both;">
                         <h3>Get your API key!</h3>
-                        <p>API key is required to use the <a href="/thd/docs/">THD Web API</a> or the <a href="/thd/support-downloads/">GATE plugin</a>. Write to Milan Dojchinovski to request own API key.</p>
+                        <p>API key is required to use the <a href="/thd/docs/">Web API</a> or the <a href="/thd/support-downloads/">light version of the GATE plugin</a>. To get an API key for FREE, just submit the form at: <a href="/thd/docs/#apikeyform">http://entityclassifier.eu/thd/docs/#apikeyform</a></p>
                     </div>
                 </div>
                 <div class="sub-main2" style="margin-top: -20px;">

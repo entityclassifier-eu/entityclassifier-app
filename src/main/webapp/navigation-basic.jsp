@@ -29,7 +29,7 @@
                     out.println("active");
                 %>
                 ">
-                <a href="/thd/">Application</a>
+                <a href="/thd/">Demo</a>
             </li>
             <li class="
                 <%

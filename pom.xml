@@ -48,7 +48,7 @@
                 </configuration>
             </plugin>
             <!--THIS PLUGIN WORKS--> 
-            <plugin>
+<!--            <plugin>
                 <groupId>org.glassfish.embedded</groupId>
                     <artifactId>maven-embedded-glassfish-plugin</artifactId>
                     <version>3.1.2.2</version>
@@ -71,17 +71,17 @@
                     <version>4.1</version>
                   </dependency>
                 </dependencies>
-              </plugin>
-<!--            <plugin>
+              </plugin>-->
+            <plugin>
                 <groupId>org.glassfish.maven.plugin</groupId>
                 <artifactId>maven-glassfish-plugin</artifactId>
                 <version>2.1</version>
                 <configuration>
                     <echo>true</echo>
                     <glassfishDirectory>/Applications/NetBeans/glassfish-4.1/glassfish</glassfishDirectory>
-                    <user>admin</user>
+                    <user>admin</user>                    
                     <passwordFile>/Applications/NetBeans/glassfish-4.1/glassfish/domains/domain1/config/domain-passwords</passwordFile>                    
-                    <adminPassword>dojcindojcin1!</adminPassword>
+                    <!--<adminPassword>dojcindojcin1!</adminPassword>-->
                     <domain>
                         <name>domain1</name>
                         <httpPort>8080</httpPort>
@@ -95,7 +95,7 @@
                     </components>
                 </configuration>
                 
-            </plugin>-->
+            </plugin>
         </plugins>
     </build>
 

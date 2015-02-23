@@ -120,8 +120,7 @@ function invokeAPI2(form){
             reqURI += "&linking_method="+linkingMethod;
             reqURI += "&spotting_method="+spottingMethod;
             reqURI += "&priority_entity_linking="+longEntityLinking;
-//            reqURI += "&apikey=123456789";
-            reqURI += "&apikey=878d40494d88430793f15c63eee95ba6";
+            reqURI += "&apikey=210fa126aa65449fb30b9cfb45949af7";
 
             
             xhr.open("POST",reqURI);
@@ -553,26 +552,26 @@ function selectOnlyThisLang(id) {
 }
 
 function selectOnlyThisLM(id) {
-    for (var i = 16;i <= 19; i++){
+    for (var i = 16;i <= 21; i++){
         document.getElementById("Check" + i).checked = false;
     }
     document.getElementById(id).checked = true;    
 }
 
 function selectOnlyThisSM(id) {
-    for (var i = 20;i <= 21; i++){
+    for (var i = 30;i <= 31; i++){
         document.getElementById("Check" + i).checked = false;
     }
     document.getElementById(id).checked = true;    
     
-    if(id == "Check21"){
+    if(id == "Check31"){
         $('#Check7').attr("checked", true);
         $('#Check8').attr("checked", false);
         $('#Check9').attr("checked", false);        
         $('#Check7').attr("disabled", true);
         $('#Check8').attr("disabled", true);
         $('#Check9').attr("disabled", true);        
-    } else if(id == "Check20") {
+    } else if(id == "Check30") {
         $('#Check7').attr("disabled", false);
         $('#Check8').attr("disabled", false);
         $('#Check9').attr("disabled", false);
@@ -609,7 +608,7 @@ function selectOnlyThisKB(id) {
 function selectOnlyThisNEType(id) {
 //    console.log("hah:"+id)
 //    console.log($('#Check20').is(":checked"))
-    if($('#Check21').is(":checked")){
+    if($('#Check31').is(":checked")){
         
         for (var i = 7;i <= 9; i++) {
             document.getElementById("Check" + i).checked = false;
@@ -619,15 +618,13 @@ function selectOnlyThisNEType(id) {
         $('#Check8').attr("disabled", true);
         $('#Check9').attr("disabled", true);
         
-    } else if($('#Check20').is(":checked")){
+    } else if($('#Check30').is(":checked")){
 //        console.log("yes: " + id);
         for (var i = 7;i <= 9; i++) {
             document.getElementById("Check" + i).checked = false;
         }
-        document.getElementById(id).checked = true;    
-        
+        document.getElementById(id).checked = true;
     }
-    
 }
 
 function selectOnlyThisProv(id) {
