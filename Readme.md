@@ -1,11 +1,17 @@
+![logo](https://docs.google.com/drawings/d/1pSLyXRntuzlYuuBHwoUJwP8Zqcu9NgsQtuqT-hdbrlA/pub?w=611&amp;h=100)
+
 The Web application for the Entityclassifier.eu
-=========================================
+---------------------------------------------
 
-We are gradually open sourcing the code.
+Entityclassifier.eu (also known as THD) is a named entity recognizer whici performs pattern-based entity spotting, entity linking with the DBpedia (resp. Wikipedia) and YAGO knowledge bases, and unsupervised entity classification with classes from the DBpedia and YAGO ontologies.
 
-The code is still in an unstable state.
+**Quick links:**
 
-Stay tuned!
+- Online demo [here](http://entityclassifier.eu/thd/).
+
+This is the Web applicatin running on top of the REST API.
+
+**Installation instructions:**
 
 ### Start the application in embedded Glassfish Web server.
 ```sh
@@ -13,8 +19,6 @@ $ mvn clean
 $ mvn package
 $ mvn embedded-glassfish:run
 ```
-If you run your own Glassfish server follow the instructions below.
-
 
 License
 ------
