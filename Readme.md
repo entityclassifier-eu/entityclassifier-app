@@ -13,7 +13,6 @@ This is the Web applicatin running on top of the REST API.
 
 **Installation instructions:**
 
-### Start the application in embedded Glassfish Web server.
 ```sh
 $ mvn clean
 $ mvn package
