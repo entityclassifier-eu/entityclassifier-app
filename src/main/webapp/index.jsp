@@ -102,6 +102,9 @@ and open the template in the editor.
                             <div class="status"></div>     
                         </div>
                     </div>
+                    <div style=" margin-bottom: 30px; color: crimson;">IMPORTANT NOTE: This system (on-line demo and Web API) can be used ONLY for <u>evaluation</u>, <u>research</u> and <u>teaching</u> purposes.
+                        Any other usage of the system (in particular for commercial purposes) is not allowed.
+                        THE SYSTEM IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND.</div>
                 </div>
             </div>
         </div>

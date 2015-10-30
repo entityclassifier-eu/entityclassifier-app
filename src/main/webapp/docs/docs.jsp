@@ -72,7 +72,9 @@ and open the template in the editor.
                     
                     <h2 id ="apikeyform">API Key</h2>
                     <p>The REST API is secured using an API key to prevent abuse of the service. You can get an API key for FREE, just send API key request by filling the form bellow. Note that an API key is also required if you want to use the <a href="/thd/support-downloads/">GATE plugin</a>. If you encounter any problems, please contact <a href='mailto:milan.dojchinovski@fit.cvut.cz?subject=API key request'>Milan Dojchinovski</a>.
-                    </p>
+                    <div style=" margin-bottom: 30px; color: crimson;">IMPORTANT NOTE: This system (on-line demo and Web API) can be used ONLY for <u>evaluation</u>, <u>research</u> and <u>teaching</u> purposes.
+                        Any other usage of the system (in particular for commercial purposes) is not allowed.
+                        THE SYSTEM IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND.</div>                    </p>
                     
                     <iframe src="https://docs.google.com/forms/d/1pQrsJjqxjUWPIp5tKC7Ac0yqjez67fdjuKlDY_YQL9E/viewform?embedded=true" width="700" height="1130" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
                 </div>
